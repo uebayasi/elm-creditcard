@@ -85,8 +85,8 @@ card config cardInfo cardData =
             , Html.Attributes.style [ ( "perspective", "1200px" ) ]
             ]
             [ svg
-                [ width "350"
-                , height "220"
+                [ width "100%"
+                , height "100%"
                 , viewBox "0 0 350 220"
                 , fontFamily "monospace"
                 , flipAnimation stateValue.flipped
