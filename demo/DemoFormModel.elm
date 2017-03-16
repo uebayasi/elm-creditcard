@@ -20,7 +20,7 @@ type alias Model =
     , name : Maybe String
     , month : Maybe String
     , year : Maybe String
-    , ccv : Maybe String
+    , cvv : Maybe String
     , state : CreditCard.State
     , shippingAddress : Maybe String
     , shippingState : Maybe String
@@ -38,7 +38,7 @@ init =
       , name = Nothing
       , month = Nothing
       , year = Nothing
-      , ccv = Nothing
+      , cvv = Nothing
       , state = CreditCard.initialState
       , shippingAddress = Nothing
       , shippingState = Nothing

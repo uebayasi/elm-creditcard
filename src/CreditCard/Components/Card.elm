@@ -73,9 +73,9 @@ card config cardInfo cardData =
             else
                 fontSize "22"
 
-        ccv =
-            cardData.ccv
-                |> Maybe.withDefault "CCV"
+        cvv =
+            cardData.cvv
+                |> Maybe.withDefault "CVV"
 
         stateValue =
             getStateValue cardData.state
@@ -110,8 +110,8 @@ card config cardInfo cardData =
                             , text_ [ x "215", y "170", fontSize "8", fill cardStyle.lightTextColor ] [ text "valid" ]
                             , text_ [ x "220", y "180", fontSize "8", fill cardStyle.lightTextColor ] [ text "thru" ]
                             , text_ [ x "250", y "180", fontSize "14", fill cardStyle.textColor ] [ text (expirationMonth ++ "/" ++ expirationYear) ]
-                            , (if (cardInfo.ccvPosition == CreditCard.Internal.Front) then
-                                text_ [ x "290", y "110", fontSize "14", fill cardStyle.darkTextColor ] [ text ccv ]
+                            , (if (cardInfo.cvvPosition == CreditCard.Internal.Front) then
+                                text_ [ x "290", y "110", fontSize "14", fill cardStyle.darkTextColor ] [ text cvv ]
                                else
                                 text ""
                               )

@@ -59,7 +59,7 @@ type alias Form =
     , name : String
     , month : String
     , year : String
-    , ccv : String
+    , cvv : String
     }
 
 
@@ -98,7 +98,7 @@ defaultFormConfig onChange =
 * `name = "Name"`
 * `month = "Month"`
 * `year = "Year"`
-* `ccv = "CCV"`
+* `cvv = "CVV"`
 -}
 defaultClasses : Form
 defaultClasses =
@@ -106,7 +106,7 @@ defaultClasses =
     , name = "Name"
     , month = "Month"
     , year = "Year"
-    , ccv = "CCV"
+    , cvv = "CVV"
     }
 
 
@@ -115,7 +115,7 @@ defaultClasses =
 * `name = "Full Name"`
 * `month = "Month"`
 * `year = "Year"`
-* `ccv = "CCV"`
+* `cvv = "CVV"`
 -}
 defaultLabels : Form
 defaultLabels =
@@ -123,7 +123,7 @@ defaultLabels =
     , name = "Full Name"
     , month = "Month"
     , year = "Year"
-    , ccv = "CCV"
+    , cvv = "CVV"
     }
 
 
@@ -132,7 +132,7 @@ defaultLabels =
 * `name = "First Last"`
 * `month = "MM"`
 * `year = "YYYY"`
-* `ccv = "CCV"`
+* `cvv = "CVV"`
 -}
 defaultPlaceholders : Form
 defaultPlaceholders =
@@ -140,5 +140,5 @@ defaultPlaceholders =
     , name = "First Last"
     , month = "MM"
     , year = "YYYY"
-    , ccv = "CCV"
+    , cvv = "CVV"
     }

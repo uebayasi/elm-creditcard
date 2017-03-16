@@ -6,7 +6,7 @@ module CreditCard
         , name
         , month
         , year
-        , ccv
+        , cvv
         , State
         , initialState
         , CardData
@@ -15,7 +15,7 @@ module CreditCard
 
 {-|
 # View
-@docs card, form, number, name, month, year, ccv
+@docs card, form, number, name, month, year, cvv
 
 # Data
 @docs CardData, emptyCardData
@@ -27,7 +27,7 @@ module CreditCard
 import CreditCard.Components.Card
 import CreditCard.Config exposing (Config, FormConfig, Form)
 import CreditCard.Internal
-import CreditCard.Events exposing (onCCVFocus, onCCVBlur)
+import CreditCard.Events exposing (onCVVFocus, onCVVBlur)
 import Helpers.CardType
 import Helpers.Misc
 import Html exposing (Html, div, label, p, text, input)
@@ -59,7 +59,7 @@ emptyCardData =
     , name = Nothing
     , month = Nothing
     , year = Nothing
-    , ccv = Nothing
+    , cvv = Nothing
     , state = initialState
     }
 
@@ -94,7 +94,7 @@ Example 2:
         , name : Maybe String
         , month : Maybe String
         , year : Maybe String
-        , ccv : Maybe String
+        , cvv : Maybe String
         , state : CreditCard.State
         , shippingAddress : Maybe String
         ...
@@ -117,7 +117,7 @@ type alias CardData model =
         , name : Maybe String
         , month : Maybe String
         , year : Maybe String
-        , ccv : Maybe String
+        , cvv : Maybe String
         , state : State
     }
 
@@ -166,13 +166,13 @@ form config cardData =
         , name config cardData
         , month config cardData
         , year config cardData
-        , ccv config cardData
+        , cvv config cardData
         ]
 
 
-{-| CCV form field
+{-| CVV form field
 
-Render the CCV field individually.
+Render the CVV field individually.
 Example:
 
     type Msg = UpdateCardData Model
@@ -184,28 +184,28 @@ Example:
         in
             form []
                 [ CreditCard.card config model
-                , CreditCard.ccv config model
+                , CreditCard.cvv config model
                 ...
 
 -}
-ccv : FormConfig model msg -> CardData model -> Html msg
-ccv config cardData =
+cvv : FormConfig model msg -> CardData model -> Html msg
+cvv config cardData =
     let
-        ccvConfig =
+        cvvConfig =
             let
                 default =
-                    Input.BigNumber.defaultOptions <| updateCCV config cardData
+                    Input.BigNumber.defaultOptions <| updateCVV config cardData
             in
                 { default | maxLength = Just 4, hasFocus = Just focusHandler }
 
         focusHandler hasFocus =
             let
                 updatedCardData =
-                    CreditCard.Events.updateCCVFocus hasFocus cardData
+                    CreditCard.Events.updateCVVFocus hasFocus cardData
             in
                 config.onChange updatedCardData
     in
-        field .ccv config <| Input.BigNumber.input ccvConfig [ placeholder config.placeholders.ccv ] <| Maybe.withDefault "" cardData.ccv
+        field .cvv config <| Input.BigNumber.input cvvConfig [ placeholder config.placeholders.cvv ] <| Maybe.withDefault "" cardData.cvv
 
 
 {-| Year form field
@@ -344,13 +344,13 @@ field getter config inputElement =
         ]
 
 
-updateCCV : Config (FormConfig model msg) -> CardData model -> (String -> msg)
-updateCCV config cardData =
+updateCVV : Config (FormConfig model msg) -> CardData model -> (String -> msg)
+updateCVV config cardData =
     let
-        updatedCardData ccv =
-            { cardData | ccv = Just ccv }
+        updatedCardData cvv =
+            { cardData | cvv = Just cvv }
     in
-        (\ccv -> config.onChange (updatedCardData ccv))
+        (\cvv -> config.onChange (updatedCardData cvv))
 
 
 updateYear : Config (FormConfig model msg) -> CardData model -> (Maybe Int -> msg)

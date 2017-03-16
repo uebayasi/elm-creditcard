@@ -5,7 +5,7 @@ import Html.Attributes exposing (type_, value)
 import Html.Events exposing (onInput)
 import CreditCard
 import CreditCard.Config
-import CreditCard.Events exposing (onCCVFocus, onCCVBlur)
+import CreditCard.Events exposing (onCVVFocus, onCVVBlur)
 
 
 main : Program Never Model Msg
@@ -23,7 +23,7 @@ type alias Model =
     , name : Maybe String
     , month : Maybe String
     , year : Maybe String
-    , ccv : Maybe String
+    , cvv : Maybe String
     , state : CreditCard.State
     }
 
@@ -34,7 +34,7 @@ type Msg
     | UpdateName (Maybe String)
     | UpdateMonth (Maybe String)
     | UpdateYear (Maybe String)
-    | UpdateCCV (Maybe String)
+    | UpdateCVV (Maybe String)
     | UpdateState CreditCard.State
 
 
@@ -83,14 +83,14 @@ view model =
             , field "Month" "number" model.month UpdateMonth
             , field "Year" "number" model.year UpdateYear
             , fieldWithAttributes
-                [ onCCVFocus UpdateState model
-                , onCCVBlur UpdateState model
-                , onInput (Just >> UpdateCCV)
+                [ onCVVFocus UpdateState model
+                , onCVVBlur UpdateState model
+                , onInput (Just >> UpdateCVV)
                 ]
-                "Ccv"
+                "Cvv"
                 "number"
-                model.ccv
-                UpdateCCV
+                model.cvv
+                UpdateCVV
             ]
 
 
@@ -112,8 +112,8 @@ update msg model =
         UpdateYear value ->
             ( { model | year = value }, Cmd.none )
 
-        UpdateCCV value ->
-            ( { model | ccv = value }, Cmd.none )
+        UpdateCVV value ->
+            ( { model | cvv = value }, Cmd.none )
 
         UpdateState state ->
             ( { model | state = state }
